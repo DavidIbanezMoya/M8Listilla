@@ -25,6 +25,7 @@
         tools:layout_editor_absoluteX="176dp" />
 
     <ListView
+        android:id="@+id/recordsView"
         android:layout_width="409dp"
         android:layout_height="275dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
