@@ -39,6 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Inicialitzem model
         records = new ArrayList<Record>();
+        nousNoms = new ArrayList<String>();
+        nousCognoms = new ArrayList<String>();
+
+        //Generem alguns noms possibles quan mes poguem crear, mes facil sera barrejar
+
+        nousNoms.add("Menja");
+        nousNoms.add("Buscador de");
+        nousNoms.add("Professional");
+        nousNoms.add("Dutxat");
+        nousNoms.add("Gimnasta");
+        nousNoms.add("Friki");
+        nousNoms.add("Guardia de la nit");
+
+        nousCognoms.add(" independentista");
+        nousCognoms.add(" amargat");
+        nousCognoms.add(" programador");
+        nousCognoms.add(" frances");
+        nousCognoms.add(" botiflers");
+        nousCognoms.add(" jove");
+
         // Afegim alguns exemples
         records.add( new Record(33,"Manolo") );
         records.add( new Record(12,"Pepe") );
@@ -73,7 +93,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (int i=0;i<25;i++) {
-                    records.add(new Record(100, "Anonymous"));
+                    int randomNum = (int) Math.floor(Math.random()*(99-1+1)+1);
+
+                    int randomNom = (int) Math.floor(Math.random()*(nousNoms.size()-1+1));
+                    int randomCognom = (int) Math.floor(Math.random()*(nousCognoms.size()-1+1));
+
+                    records.add(new Record(randomNum, nousNoms.get(randomNom)+nousCognoms.get(randomCognom)));
                 }
                 // notificar l'adapter dels canvis al model
                 adapter.notifyDataSetChanged();
