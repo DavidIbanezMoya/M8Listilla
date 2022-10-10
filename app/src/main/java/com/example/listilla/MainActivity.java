@@ -8,17 +8,25 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
     // Model: Record (intents=puntuació, nom)
-    class Record {
+    class Record implements Comparable<Record> {
         public int intents;
         public String nom;
 
         public Record(int _intents, String _nom ) {
             intents = _intents;
             nom = _nom;
+        }
+
+
+
+        public int compareTo(Record r) {
+            return this.intents - r.intents;
         }
     }
 
@@ -100,6 +108,16 @@ public class MainActivity extends AppCompatActivity {
 
                     records.add(new Record(randomNum, nousNoms.get(randomNom)+nousCognoms.get(randomCognom)));
                 }
+                // notificar l'adapter dels canvis al model
+                adapter.notifyDataSetChanged();
+            }
+        });
+        Button orderButton = (Button) findViewById(R.id.orderlv);
+        orderButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+                Collections.sort(records);
                 // notificar l'adapter dels canvis al model
                 adapter.notifyDataSetChanged();
             }
